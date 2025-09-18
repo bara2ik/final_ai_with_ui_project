@@ -1,4 +1,32 @@
 import React, { useState } from "react";
+import {
+  ThemeProvider,
+  createTheme,
+  CssBaseline,
+  Container,
+  Paper,
+  Typography,
+  TextField,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Button,
+  Box
+} from '@mui/material';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#007bff',
+    },
+    background: {
+      default: '#1e1e1e',
+      paper: '#2a2a2a',
+    },
+  },
+});
 
 function App() {
   const [formData, setFormData] = useState({
@@ -54,60 +82,109 @@ function App() {
   };
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        width: "100vw",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#1e1e1e" // optional: dark background like your screenshot
-      }}
-    >
-      <div style={{ maxWidth: "400px", width: "100%" }}>
-        <h1 style={{ textAlign: "center", color: "#fff" }}>House Price Prediction</h1>
-        <form onSubmit={handleSubmit} style={{ display: "grid", gap: "10px" }}>
-          {Object.keys(formData).map((key) => (
-            <input
-              key={key}
-              name={key}
-              placeholder={key.replace(/_/g, " ")}
-              value={formData[key]}
-              onChange={handleChange}
-              type={["rooms","area","days_on_market","sale_year","sale_month","sale_quarter"].includes(key) ? "number" : "text"}
-              step={["bathrooms","age","garage_spaces","lot_size","school_rating"].includes(key) ? "0.01" : undefined}
-              style={{
-                padding: "8px",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-                width: "100%",
-                boxSizing: "border-box"
-              }}
-            />
-          ))}
-          <button
-            type="submit"
-            style={{
-              padding: "10px",
-              borderRadius: "4px",
-              border: "none",
-              backgroundColor: "#007bff",
-              color: "#fff",
-              cursor: "pointer",
-              fontWeight: "bold"
-            }}
-          >
-            Predict Price
-          </button>
-        </form>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <Container maxWidth="sm" sx={{ py: 4 }}>
+        <Paper 
+          elevation={3}
+          sx={{ 
+            p: 4, 
+            maxHeight: '90vh', 
+            overflowY: 'auto',
+            borderRadius: 2
+          }}
+        >
+          <Typography variant="h4" component="h1" align="center" gutterBottom>
+            House Price Prediction
+          </Typography>
+          
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            {Object.keys(formData).map((key) => (
+              <Box key={key} sx={{ mb: 2 }}>
+                {key === "neighborhood" ? (
+                  <FormControl fullWidth variant="outlined">
+                    <InputLabel>Neighborhood</InputLabel>
+                    <Select
+                      name={key}
+                      value={formData[key]}
+                      onChange={handleChange}
+                      label="Neighborhood"
+                    >
+                      <MenuItem value="">Select a neighborhood</MenuItem>
+                      <MenuItem value="Downtown">Downtown</MenuItem>
+                      <MenuItem value="Suburbs">Suburbs</MenuItem>
+                      <MenuItem value="Waterfront">Waterfront</MenuItem>
+                      <MenuItem value="Historic">Historic</MenuItem>
+                      <MenuItem value="New Development">New Development</MenuItem>
+                      <MenuItem value="Rural">Rural</MenuItem>
+                      <MenuItem value="Industrial">Industrial</MenuItem>
+                      <MenuItem value="University Area">University Area</MenuItem>
+                    </Select>
+                  </FormControl>
+                ) : key === "property_type" ? (
+                  <FormControl fullWidth variant="outlined">
+                    <InputLabel>Property Type</InputLabel>
+                    <Select
+                      name={key}
+                      value={formData[key]}
+                      onChange={handleChange}
+                      label="Property Type"
+                    >
+                      <MenuItem value="">Select property type</MenuItem>
+                      <MenuItem value="Single Family">Single Family</MenuItem>
+                      <MenuItem value="Townhouse">Townhouse</MenuItem>
+                      <MenuItem value="Condo">Condo</MenuItem>
+                      <MenuItem value="Duplex">Duplex</MenuItem>
+                    </Select>
+                  </FormControl>
+                ) : (
+                  <TextField
+                    fullWidth
+                    name={key}
+                    label={key.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase())}
+                    placeholder={`Enter ${key.replace(/_/g, " ")}`}
+                    value={formData[key]}
+                    onChange={handleChange}
+                    type={["rooms","area","days_on_market","sale_year","sale_month","sale_quarter"].includes(key) ? "number" : "text"}
+                    inputProps={{
+                      step: ["bathrooms","age","garage_spaces","lot_size","school_rating"].includes(key) ? "0.01" : undefined
+                    }}
+                    variant="outlined"
+                  />
+                )}
+              </Box>
+            ))}
+            
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              size="large"
+              sx={{ mt: 3, py: 1.5 }}
+            >
+              Predict Price
+            </Button>
+          </Box>
 
-        {predPrice !== null && (
-          <h2 style={{ textAlign: "center", marginTop: "20px", color: "#fff" }}>
-            Predicted Price: ${predPrice.toLocaleString()}
-          </h2>
-        )}
-      </div>
-    </div>
+          {predPrice !== null && (
+            <Paper 
+              elevation={2}
+              sx={{ 
+                mt: 3, 
+                p: 2, 
+                textAlign: 'center',
+                bgcolor: 'primary.main',
+                color: 'primary.contrastText'
+              }}
+            >
+              <Typography variant="h5" component="div">
+                Predicted Price: ${predPrice.toLocaleString()}
+              </Typography>
+            </Paper>
+          )}
+        </Paper>
+      </Container>
+    </ThemeProvider>
   );
 }
 
