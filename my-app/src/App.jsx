@@ -56,17 +56,26 @@ function App() {
   return (
     <div
       style={{
-        height: "100vh",
+        minHeight: "100vh",
         width: "100vw",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#1e1e1e" // optional: dark background like your screenshot
+        alignItems: "flex-start",
+        backgroundColor: "#1e1e1e",
+        padding: "20px 10px"
       }}
     >
-      <div style={{ maxWidth: "400px", width: "100%" }}>
-        <h1 style={{ textAlign: "center", color: "#fff" }}>House Price Prediction</h1>
-        <form onSubmit={handleSubmit} style={{ display: "grid", gap: "15px" }}>
+      <div style={{ 
+        maxWidth: "400px", 
+        width: "100%",
+        maxHeight: "90vh",
+        overflowY: "auto",
+        padding: "20px",
+        borderRadius: "8px",
+        backgroundColor: "#2a2a2a"
+      }}>
+        <h1 style={{ textAlign: "center", color: "#fff", margin: "0 0 20px 0" }}>House Price Prediction</h1>
+        <form onSubmit={handleSubmit} style={{ display: "grid", gap: "12px" }}>
           {Object.keys(formData).map((key) => (
             <div key={key} style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
               <label 
@@ -115,9 +124,18 @@ function App() {
         </form>
 
         {predPrice !== null && (
-          <h2 style={{ textAlign: "center", marginTop: "20px", color: "#fff" }}>
+          <div style={{ 
+            textAlign: "center", 
+            marginTop: "20px", 
+            padding: "15px", 
+            backgroundColor: "#007bff", 
+            borderRadius: "8px",
+            color: "#fff",
+            fontSize: "18px",
+            fontWeight: "bold"
+          }}>
             Predicted Price: ${predPrice.toLocaleString()}
-          </h2>
+          </div>
         )}
       </div>
     </div>
