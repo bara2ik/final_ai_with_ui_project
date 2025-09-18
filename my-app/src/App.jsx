@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from '@mui/material';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -159,20 +160,20 @@ function App() {
               )}
             </div>
           ))}
-          <button
+          <Button
             type="submit"
-            style={{
-              padding: "10px",
-              borderRadius: "4px",
-              border: "none",
-              backgroundColor: "#007bff",
-              color: "#fff",
-              cursor: "pointer",
+            variant="contained"
+            color="primary"
+            size="large"
+            fullWidth
+            sx={{ 
+              mt: 1,
+              py: 1.5,
               fontWeight: "bold"
             }}
           >
             Predict Price
-          </button>
+          </Button>
         </form>
 
         {predPrice !== null && (
