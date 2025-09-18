@@ -74,7 +74,46 @@ function App() {
         borderRadius: "16px",
         backgroundColor: "#2a2a2a",
         boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
-        border: "1px solid #404040"
+        border: "1px solid #404040",
+        animation: "slideInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+      }}
+      ref={(el) => {
+        if (el) {
+          // Inject container animation keyframes
+          if (!document.querySelector('#containerAnimationKeyframes')) {
+            const style = document.createElement('style');
+            style.id = 'containerAnimationKeyframes';
+            style.textContent = `
+              @keyframes slideInUp {
+                0% {
+                  opacity: 0;
+                  transform: translateY(40px) scale(0.95);
+                }
+                100% {
+                  opacity: 1;
+                  transform: translateY(0) scale(1);
+                }
+              }
+              
+              @keyframes slideInLeft {
+                0% {
+                  opacity: 0;
+                  transform: translateX(-30px);
+                }
+                100% {
+                  opacity: 1;
+                  transform: translateX(0);
+                }
+              }
+              
+              @keyframes buttonPulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.02); }
+              }
+            `;
+            document.head.appendChild(style);
+          }
+        }
       }}>
         <h1 style={{ 
           textAlign: "center", 
@@ -87,7 +126,12 @@ function App() {
         }}>House Price Prediction</h1>
         <form onSubmit={handleSubmit} style={{ display: "grid", gap: "18px" }}>
           {Object.keys(formData).map((key) => (
-            <div key={key} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            <div key={key} style={{ 
+              display: "flex", 
+              flexDirection: "column", 
+              gap: "8px",
+              animation: `slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${Object.keys(formData).indexOf(key) * 0.1}s backwards`
+            }}>
               <label 
                 htmlFor={key}
                 style={{
@@ -117,16 +161,31 @@ function App() {
                     color: "#fff",
                     cursor: "pointer",
                     fontSize: "14px",
-                    transition: "all 0.3s ease",
-                    outline: "none"
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    outline: "none",
+                    willChange: "transform, box-shadow, border-color"
+                  }}
+                  onMouseEnter={(e) => {
+                    if (document.activeElement !== e.target) {
+                      e.target.style.transform = "translateY(-1px)";
+                      e.target.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.15)";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (document.activeElement !== e.target) {
+                      e.target.style.transform = "translateY(0)";
+                      e.target.style.boxShadow = "none";
+                    }
                   }}
                   onFocus={(e) => {
                     e.target.style.borderColor = "#007bff";
-                    e.target.style.boxShadow = "0 0 0 3px rgba(0, 123, 255, 0.1)";
+                    e.target.style.boxShadow = "0 0 0 4px rgba(0, 123, 255, 0.15), 0 4px 12px rgba(0, 123, 255, 0.2)";
+                    e.target.style.transform = "translateY(-2px)";
                   }}
                   onBlur={(e) => {
                     e.target.style.borderColor = "#404040";
                     e.target.style.boxShadow = "none";
+                    e.target.style.transform = "translateY(0)";
                   }}
                 >
                   <option value="" style={{ backgroundColor: "#3a3a3a", color: "#ccc" }}>Select a neighborhood</option>
@@ -155,16 +214,31 @@ function App() {
                     color: "#fff",
                     cursor: "pointer",
                     fontSize: "14px",
-                    transition: "all 0.3s ease",
-                    outline: "none"
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    outline: "none",
+                    willChange: "transform, box-shadow, border-color"
+                  }}
+                  onMouseEnter={(e) => {
+                    if (document.activeElement !== e.target) {
+                      e.target.style.transform = "translateY(-1px)";
+                      e.target.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.15)";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (document.activeElement !== e.target) {
+                      e.target.style.transform = "translateY(0)";
+                      e.target.style.boxShadow = "none";
+                    }
                   }}
                   onFocus={(e) => {
                     e.target.style.borderColor = "#007bff";
-                    e.target.style.boxShadow = "0 0 0 3px rgba(0, 123, 255, 0.1)";
+                    e.target.style.boxShadow = "0 0 0 4px rgba(0, 123, 255, 0.15), 0 4px 12px rgba(0, 123, 255, 0.2)";
+                    e.target.style.transform = "translateY(-2px)";
                   }}
                   onBlur={(e) => {
                     e.target.style.borderColor = "#404040";
                     e.target.style.boxShadow = "none";
+                    e.target.style.transform = "translateY(0)";
                   }}
                 >
                   <option value="" style={{ backgroundColor: "#3a3a3a", color: "#ccc" }}>Select property type</option>
@@ -191,16 +265,31 @@ function App() {
                     backgroundColor: "#3a3a3a",
                     color: "#fff",
                     fontSize: "14px",
-                    transition: "all 0.3s ease",
-                    outline: "none"
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    outline: "none",
+                    willChange: "transform, box-shadow, border-color"
+                  }}
+                  onMouseEnter={(e) => {
+                    if (document.activeElement !== e.target) {
+                      e.target.style.transform = "translateY(-1px)";
+                      e.target.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.15)";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (document.activeElement !== e.target) {
+                      e.target.style.transform = "translateY(0)";
+                      e.target.style.boxShadow = "none";
+                    }
                   }}
                   onFocus={(e) => {
                     e.target.style.borderColor = "#007bff";
-                    e.target.style.boxShadow = "0 0 0 3px rgba(0, 123, 255, 0.1)";
+                    e.target.style.boxShadow = "0 0 0 4px rgba(0, 123, 255, 0.15), 0 4px 12px rgba(0, 123, 255, 0.2)";
+                    e.target.style.transform = "translateY(-2px)";
                   }}
                   onBlur={(e) => {
                     e.target.style.borderColor = "#404040";
                     e.target.style.boxShadow = "none";
+                    e.target.style.transform = "translateY(0)";
                   }}
                 />
               )}
@@ -222,17 +311,20 @@ function App() {
               boxShadow: "0 4px 12px rgba(0, 123, 255, 0.3)",
               transition: "all 0.3s ease",
               textTransform: "uppercase",
-              letterSpacing: "0.5px"
+              letterSpacing: "0.5px",
+              animation: "buttonPulse 3s ease-in-out infinite"
             }}
             onMouseEnter={(e) => {
               e.target.style.backgroundColor = "#0056b3";
               e.target.style.transform = "translateY(-2px)";
               e.target.style.boxShadow = "0 6px 20px rgba(0, 123, 255, 0.4)";
+              e.target.style.animation = "none"; // Pause pulse on hover
             }}
             onMouseLeave={(e) => {
               e.target.style.backgroundColor = "#007bff";
               e.target.style.transform = "translateY(0)";
               e.target.style.boxShadow = "0 4px 12px rgba(0, 123, 255, 0.3)";
+              e.target.style.animation = "buttonPulse 3s ease-in-out infinite"; // Resume pulse
             }}
             onMouseDown={(e) => {
               e.target.style.transform = "translateY(0)";
@@ -246,19 +338,52 @@ function App() {
         </form>
 
         {predPrice !== null && (
-          <div style={{ 
-            textAlign: "center", 
-            marginTop: "30px", 
-            padding: "20px", 
-            background: "linear-gradient(135deg, #007bff 0%, #0056b3 100%)",
-            borderRadius: "12px",
-            color: "#fff",
-            fontSize: "20px",
-            fontWeight: "700",
-            boxShadow: "0 6px 20px rgba(0, 123, 255, 0.3)",
-            border: "1px solid rgba(255,255,255,0.1)",
-            letterSpacing: "0.5px"
-          }}>
+          <div
+            key={predPrice}  // Force re-render to trigger animation
+            style={{ 
+              textAlign: "center", 
+              marginTop: "30px", 
+              padding: "20px", 
+              background: "linear-gradient(135deg, #007bff 0%, #0056b3 100%)",
+              borderRadius: "12px",
+              color: "#fff",
+              fontSize: "20px",
+              fontWeight: "700",
+              boxShadow: "0 6px 20px rgba(0, 123, 255, 0.3)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              letterSpacing: "0.5px",
+              opacity: 0,
+              transform: "scale(0.8) translateY(20px)",
+              animation: "0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards",
+              animationName: "fadeInScale"
+            }}
+            ref={(el) => {
+              if (el) {
+                // Inject keyframes into document head
+                if (!document.querySelector('#fadeInScaleKeyframes')) {
+                  const style = document.createElement('style');
+                  style.id = 'fadeInScaleKeyframes';
+                  style.textContent = `
+                    @keyframes fadeInScale {
+                      0% {
+                        opacity: 0;
+                        transform: scale(0.8) translateY(20px);
+                      }
+                      50% {
+                        opacity: 0.8;
+                        transform: scale(1.05) translateY(-5px);
+                      }
+                      100% {
+                        opacity: 1;
+                        transform: scale(1) translateY(0);
+                      }
+                    }
+                  `;
+                  document.head.appendChild(style);
+                }
+              }
+            }}
+          >
             🏠 Predicted Price: ${predPrice.toLocaleString()}
           </div>
         )}
