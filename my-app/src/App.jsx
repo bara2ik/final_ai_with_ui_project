@@ -110,6 +110,11 @@ function App() {
                   <option value="Downtown" style={{ color: "#000" }}>Downtown</option>
                   <option value="Suburbs" style={{ color: "#000" }}>Suburbs</option>
                   <option value="Waterfront" style={{ color: "#000" }}>Waterfront</option>
+                  <option value="Historic" style={{ color: "#000" }}>Historic</option>
+                  <option value="New Development" style={{ color: "#000" }}>New Development</option>
+                  <option value="Rural" style={{ color: "#000" }}>Rural</option>
+                  <option value="Industrial" style={{ color: "#000" }}>Industrial</option>
+                  <option value="University Area" style={{ color: "#000" }}>University Area</option>
                 </select>
               ) : (
                 <input
