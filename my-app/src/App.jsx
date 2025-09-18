@@ -70,21 +70,33 @@ function App() {
         width: "100%",
         maxHeight: "90vh",
         overflowY: "auto",
-        padding: "20px",
-        borderRadius: "8px",
-        backgroundColor: "#2a2a2a"
+        padding: "30px",
+        borderRadius: "16px",
+        backgroundColor: "#2a2a2a",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+        border: "1px solid #404040"
       }}>
-        <h1 style={{ textAlign: "center", color: "#fff", margin: "0 0 20px 0" }}>House Price Prediction</h1>
-        <form onSubmit={handleSubmit} style={{ display: "grid", gap: "12px" }}>
+        <h1 style={{ 
+          textAlign: "center", 
+          color: "#fff", 
+          margin: "0 0 30px 0",
+          fontSize: "28px",
+          fontWeight: "700",
+          letterSpacing: "0.5px",
+          textShadow: "0 2px 4px rgba(0,0,0,0.3)"
+        }}>House Price Prediction</h1>
+        <form onSubmit={handleSubmit} style={{ display: "grid", gap: "18px" }}>
           {Object.keys(formData).map((key) => (
-            <div key={key} style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+            <div key={key} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               <label 
                 htmlFor={key}
                 style={{
-                  color: "#fff",
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  textTransform: "capitalize"
+                  color: "#f0f0f0",
+                  fontSize: "15px",
+                  fontWeight: "600",
+                  textTransform: "capitalize",
+                  marginBottom: "4px",
+                  letterSpacing: "0.3px"
                 }}
               >
                 {key.replace(/_/g, " ")}
@@ -96,25 +108,36 @@ function App() {
                   value={formData[key]}
                   onChange={handleChange}
                   style={{
-                    padding: "8px",
-                    borderRadius: "4px",
-                    border: "1px solid #ccc",
+                    padding: "12px 16px",
+                    borderRadius: "8px",
+                    border: "2px solid #404040",
                     width: "100%",
                     boxSizing: "border-box",
-                    backgroundColor: "#fff",
-                    color: "#000",
-                    cursor: "pointer"
+                    backgroundColor: "#3a3a3a",
+                    color: "#fff",
+                    cursor: "pointer",
+                    fontSize: "14px",
+                    transition: "all 0.3s ease",
+                    outline: "none"
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "#007bff";
+                    e.target.style.boxShadow = "0 0 0 3px rgba(0, 123, 255, 0.1)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "#404040";
+                    e.target.style.boxShadow = "none";
                   }}
                 >
-                  <option value="" style={{ color: "#000" }}>Select a neighborhood</option>
-                  <option value="Downtown" style={{ color: "#000" }}>Downtown</option>
-                  <option value="Suburbs" style={{ color: "#000" }}>Suburbs</option>
-                  <option value="Waterfront" style={{ color: "#000" }}>Waterfront</option>
-                  <option value="Historic" style={{ color: "#000" }}>Historic</option>
-                  <option value="New Development" style={{ color: "#000" }}>New Development</option>
-                  <option value="Rural" style={{ color: "#000" }}>Rural</option>
-                  <option value="Industrial" style={{ color: "#000" }}>Industrial</option>
-                  <option value="University Area" style={{ color: "#000" }}>University Area</option>
+                  <option value="" style={{ backgroundColor: "#3a3a3a", color: "#ccc" }}>Select a neighborhood</option>
+                  <option value="Downtown" style={{ backgroundColor: "#3a3a3a", color: "#fff" }}>Downtown</option>
+                  <option value="Suburbs" style={{ backgroundColor: "#3a3a3a", color: "#fff" }}>Suburbs</option>
+                  <option value="Waterfront" style={{ backgroundColor: "#3a3a3a", color: "#fff" }}>Waterfront</option>
+                  <option value="Historic" style={{ backgroundColor: "#3a3a3a", color: "#fff" }}>Historic</option>
+                  <option value="New Development" style={{ backgroundColor: "#3a3a3a", color: "#fff" }}>New Development</option>
+                  <option value="Rural" style={{ backgroundColor: "#3a3a3a", color: "#fff" }}>Rural</option>
+                  <option value="Industrial" style={{ backgroundColor: "#3a3a3a", color: "#fff" }}>Industrial</option>
+                  <option value="University Area" style={{ backgroundColor: "#3a3a3a", color: "#fff" }}>University Area</option>
                 </select>
               ) : key === "property_type" ? (
                 <select
@@ -123,21 +146,32 @@ function App() {
                   value={formData[key]}
                   onChange={handleChange}
                   style={{
-                    padding: "8px",
-                    borderRadius: "4px",
-                    border: "1px solid #ccc",
+                    padding: "12px 16px",
+                    borderRadius: "8px",
+                    border: "2px solid #404040",
                     width: "100%",
                     boxSizing: "border-box",
-                    backgroundColor: "#fff",
-                    color: "#000",
-                    cursor: "pointer"
+                    backgroundColor: "#3a3a3a",
+                    color: "#fff",
+                    cursor: "pointer",
+                    fontSize: "14px",
+                    transition: "all 0.3s ease",
+                    outline: "none"
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "#007bff";
+                    e.target.style.boxShadow = "0 0 0 3px rgba(0, 123, 255, 0.1)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "#404040";
+                    e.target.style.boxShadow = "none";
                   }}
                 >
-                  <option value="" style={{ color: "#000" }}>Select property type</option>
-                  <option value="Single Family" style={{ color: "#000" }}>Single Family</option>
-                  <option value="Townhouse" style={{ color: "#000" }}>Townhouse</option>
-                  <option value="Condo" style={{ color: "#000" }}>Condo</option>
-                  <option value="Duplex" style={{ color: "#000" }}>Duplex</option>
+                  <option value="" style={{ backgroundColor: "#3a3a3a", color: "#ccc" }}>Select property type</option>
+                  <option value="Single Family" style={{ backgroundColor: "#3a3a3a", color: "#fff" }}>Single Family</option>
+                  <option value="Townhouse" style={{ backgroundColor: "#3a3a3a", color: "#fff" }}>Townhouse</option>
+                  <option value="Condo" style={{ backgroundColor: "#3a3a3a", color: "#fff" }}>Condo</option>
+                  <option value="Duplex" style={{ backgroundColor: "#3a3a3a", color: "#fff" }}>Duplex</option>
                 </select>
               ) : (
                 <input
@@ -149,11 +183,24 @@ function App() {
                   type={["rooms","area","days_on_market","sale_year","sale_month","sale_quarter"].includes(key) ? "number" : "text"}
                   step={["bathrooms","age","garage_spaces","lot_size","school_rating"].includes(key) ? "0.01" : undefined}
                   style={{
-                    padding: "8px",
-                    borderRadius: "4px",
-                    border: "1px solid #ccc",
+                    padding: "12px 16px",
+                    borderRadius: "8px",
+                    border: "2px solid #404040",
                     width: "100%",
-                    boxSizing: "border-box"
+                    boxSizing: "border-box",
+                    backgroundColor: "#3a3a3a",
+                    color: "#fff",
+                    fontSize: "14px",
+                    transition: "all 0.3s ease",
+                    outline: "none"
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "#007bff";
+                    e.target.style.boxShadow = "0 0 0 3px rgba(0, 123, 255, 0.1)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "#404040";
+                    e.target.style.boxShadow = "none";
                   }}
                 />
               )}
@@ -162,16 +209,36 @@ function App() {
           <button
             type="submit"
             style={{
-              padding: "12px",
-              borderRadius: "4px",
+              padding: "14px 20px",
+              borderRadius: "8px",
               border: "none",
               backgroundColor: "#007bff",
               color: "#fff",
               cursor: "pointer",
-              fontWeight: "bold",
+              fontWeight: "600",
               width: "100%",
               fontSize: "16px",
-              marginTop: "8px"
+              marginTop: "16px",
+              boxShadow: "0 4px 12px rgba(0, 123, 255, 0.3)",
+              transition: "all 0.3s ease",
+              textTransform: "uppercase",
+              letterSpacing: "0.5px"
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "#0056b3";
+              e.target.style.transform = "translateY(-2px)";
+              e.target.style.boxShadow = "0 6px 20px rgba(0, 123, 255, 0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "#007bff";
+              e.target.style.transform = "translateY(0)";
+              e.target.style.boxShadow = "0 4px 12px rgba(0, 123, 255, 0.3)";
+            }}
+            onMouseDown={(e) => {
+              e.target.style.transform = "translateY(0)";
+            }}
+            onMouseUp={(e) => {
+              e.target.style.transform = "translateY(-2px)";
             }}
           >
             Predict Price
@@ -181,15 +248,18 @@ function App() {
         {predPrice !== null && (
           <div style={{ 
             textAlign: "center", 
-            marginTop: "20px", 
-            padding: "15px", 
-            backgroundColor: "#007bff", 
-            borderRadius: "8px",
+            marginTop: "30px", 
+            padding: "20px", 
+            background: "linear-gradient(135deg, #007bff 0%, #0056b3 100%)",
+            borderRadius: "12px",
             color: "#fff",
-            fontSize: "18px",
-            fontWeight: "bold"
+            fontSize: "20px",
+            fontWeight: "700",
+            boxShadow: "0 6px 20px rgba(0, 123, 255, 0.3)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            letterSpacing: "0.5px"
           }}>
-            Predicted Price: ${predPrice.toLocaleString()}
+            🏠 Predicted Price: ${predPrice.toLocaleString()}
           </div>
         )}
       </div>
