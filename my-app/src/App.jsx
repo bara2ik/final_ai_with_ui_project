@@ -116,6 +116,29 @@ function App() {
                   <option value="Industrial" style={{ color: "#000" }}>Industrial</option>
                   <option value="University Area" style={{ color: "#000" }}>University Area</option>
                 </select>
+              ) : key === "property_type" ? (
+                <select
+                  id={key}
+                  name={key}
+                  value={formData[key]}
+                  onChange={handleChange}
+                  style={{
+                    padding: "8px",
+                    borderRadius: "4px",
+                    border: "1px solid #ccc",
+                    width: "100%",
+                    boxSizing: "border-box",
+                    backgroundColor: "#fff",
+                    color: "#000",
+                    cursor: "pointer"
+                  }}
+                >
+                  <option value="" style={{ color: "#000" }}>Select property type</option>
+                  <option value="Single Family" style={{ color: "#000" }}>Single Family</option>
+                  <option value="Townhouse" style={{ color: "#000" }}>Townhouse</option>
+                  <option value="Condo" style={{ color: "#000" }}>Condo</option>
+                  <option value="Duplex" style={{ color: "#000" }}>Duplex</option>
+                </select>
               ) : (
                 <input
                   id={key}
