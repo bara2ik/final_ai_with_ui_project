@@ -89,22 +89,52 @@ function App() {
               >
                 {key.replace(/_/g, " ")}
               </label>
-              <input
-                id={key}
-                name={key}
-                placeholder={`Enter ${key.replace(/_/g, " ")}`}
-                value={formData[key]}
-                onChange={handleChange}
-                type={["rooms","area","days_on_market","sale_year","sale_month","sale_quarter"].includes(key) ? "number" : "text"}
-                step={["bathrooms","age","garage_spaces","lot_size","school_rating"].includes(key) ? "0.01" : undefined}
-                style={{
-                  padding: "8px",
-                  borderRadius: "4px",
-                  border: "1px solid #ccc",
-                  width: "100%",
-                  boxSizing: "border-box"
-                }}
-              />
+              {key === "neighborhood" ? (
+                <select
+                  id={key}
+                  name={key}
+                  value={formData[key]}
+                  onChange={handleChange}
+                  style={{
+                    padding: "8px",
+                    borderRadius: "4px",
+                    border: "1px solid #ccc",
+                    width: "100%",
+                    boxSizing: "border-box",
+                    backgroundColor: "#fff",
+                    cursor: "pointer",
+                    maxHeight: "200px",
+                    overflowY: "auto"
+                  }}
+                >
+                  <option value="">Select a neighborhood</option>
+                  <option value="Downtown">Downtown</option>
+                  <option value="Suburbs North">Suburbs North</option>
+                  <option value="Suburbs South">Suburbs South</option>
+                  <option value="Historic District">Historic District</option>
+                  <option value="Waterfront">Waterfront</option>
+                  <option value="Business District">Business District</option>
+                  <option value="Residential Hills">Residential Hills</option>
+                  <option value="University Area">University Area</option>
+                </select>
+              ) : (
+                <input
+                  id={key}
+                  name={key}
+                  placeholder={`Enter ${key.replace(/_/g, " ")}`}
+                  value={formData[key]}
+                  onChange={handleChange}
+                  type={["rooms","area","days_on_market","sale_year","sale_month","sale_quarter"].includes(key) ? "number" : "text"}
+                  step={["bathrooms","age","garage_spaces","lot_size","school_rating"].includes(key) ? "0.01" : undefined}
+                  style={{
+                    padding: "8px",
+                    borderRadius: "4px",
+                    border: "1px solid #ccc",
+                    width: "100%",
+                    boxSizing: "border-box"
+                  }}
+                />
+              )}
             </div>
           ))}
           <button
