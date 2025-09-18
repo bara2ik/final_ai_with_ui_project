@@ -102,20 +102,14 @@ function App() {
                     width: "100%",
                     boxSizing: "border-box",
                     backgroundColor: "#fff",
-                    cursor: "pointer",
-                    maxHeight: "200px",
-                    overflowY: "auto"
+                    color: "#000",
+                    cursor: "pointer"
                   }}
                 >
-                  <option value="">Select a neighborhood</option>
-                  <option value="Downtown">Downtown</option>
-                  <option value="Suburbs North">Suburbs North</option>
-                  <option value="Suburbs South">Suburbs South</option>
-                  <option value="Historic District">Historic District</option>
-                  <option value="Waterfront">Waterfront</option>
-                  <option value="Business District">Business District</option>
-                  <option value="Residential Hills">Residential Hills</option>
-                  <option value="University Area">University Area</option>
+                  <option value="" style={{ color: "#000" }}>Select a neighborhood</option>
+                  <option value="Downtown" style={{ color: "#000" }}>Downtown</option>
+                  <option value="Suburbs" style={{ color: "#000" }}>Suburbs</option>
+                  <option value="Waterfront" style={{ color: "#000" }}>Waterfront</option>
                 </select>
               ) : (
                 <input
