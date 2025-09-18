@@ -1,37 +1,4 @@
 import React, { useState } from "react";
-import { 
-  ThemeProvider, 
-  createTheme, 
-  CssBaseline, 
-  Button 
-} from '@mui/material';
-
-// Create MUI theme that matches our existing design
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#007bff',
-    },
-    background: {
-      default: '#1e1e1e',
-      paper: '#2a2a2a',
-    },
-    text: {
-      primary: '#ffffff',
-    },
-  },
-  components: {
-    // Customize MUI components to match our styling
-    MuiCssBaseline: {
-      styleOverrides: {
-        body: {
-          backgroundColor: '#1e1e1e',
-        },
-      },
-    },
-  },
-});
 
 function App() {
   const [formData, setFormData] = useState({
@@ -87,19 +54,17 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <div
-        style={{
-          minHeight: "100vh",
-          width: "100vw",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          backgroundColor: "#1e1e1e",
-          padding: "20px 10px"
-        }}
-      >
+    <div
+      style={{
+        minHeight: "100vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        backgroundColor: "#1e1e1e",
+        padding: "20px 10px"
+      }}
+    >
       <div style={{ 
         maxWidth: "400px", 
         width: "100%",
@@ -194,21 +159,23 @@ function App() {
               )}
             </div>
           ))}
-          <Button
+          <button
             type="submit"
-            variant="contained"
-            color="primary"
-            size="large"
-            fullWidth
-            sx={{ 
-              mt: 1,
-              py: 1.5,
+            style={{
+              padding: "12px",
+              borderRadius: "4px",
+              border: "none",
+              backgroundColor: "#007bff",
+              color: "#fff",
+              cursor: "pointer",
               fontWeight: "bold",
-              fontSize: "16px"
+              width: "100%",
+              fontSize: "16px",
+              marginTop: "8px"
             }}
           >
             Predict Price
-          </Button>
+          </button>
         </form>
 
         {predPrice !== null && (
@@ -226,8 +193,7 @@ function App() {
           </div>
         )}
       </div>
-      </div>
-    </ThemeProvider>
+    </div>
   );
 }
 
