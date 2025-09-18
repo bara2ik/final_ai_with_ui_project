@@ -8,3 +8,6 @@ JUST CHNAGE THE Xs INTO YOUR IP ADDRESS
 to run write : 
 uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
 npm run dev -- --host (your ip address)
+
+
+in your terminal , open it from up right -> terminal -> new terminal
