@@ -66,24 +66,37 @@ function App() {
     >
       <div style={{ maxWidth: "400px", width: "100%" }}>
         <h1 style={{ textAlign: "center", color: "#fff" }}>House Price Prediction</h1>
-        <form onSubmit={handleSubmit} style={{ display: "grid", gap: "10px" }}>
+        <form onSubmit={handleSubmit} style={{ display: "grid", gap: "15px" }}>
           {Object.keys(formData).map((key) => (
-            <input
-              key={key}
-              name={key}
-              placeholder={key.replace(/_/g, " ")}
-              value={formData[key]}
-              onChange={handleChange}
-              type={["rooms","area","days_on_market","sale_year","sale_month","sale_quarter"].includes(key) ? "number" : "text"}
-              step={["bathrooms","age","garage_spaces","lot_size","school_rating"].includes(key) ? "0.01" : undefined}
-              style={{
-                padding: "8px",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-                width: "100%",
-                boxSizing: "border-box"
-              }}
-            />
+            <div key={key} style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+              <label 
+                htmlFor={key}
+                style={{
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                  textTransform: "capitalize"
+                }}
+              >
+                {key.replace(/_/g, " ")}
+              </label>
+              <input
+                id={key}
+                name={key}
+                placeholder={`Enter ${key.replace(/_/g, " ")}`}
+                value={formData[key]}
+                onChange={handleChange}
+                type={["rooms","area","days_on_market","sale_year","sale_month","sale_quarter"].includes(key) ? "number" : "text"}
+                step={["bathrooms","age","garage_spaces","lot_size","school_rating"].includes(key) ? "0.01" : undefined}
+                style={{
+                  padding: "8px",
+                  borderRadius: "4px",
+                  border: "1px solid #ccc",
+                  width: "100%",
+                  boxSizing: "border-box"
+                }}
+              />
+            </div>
           ))}
           <button
             type="submit"
